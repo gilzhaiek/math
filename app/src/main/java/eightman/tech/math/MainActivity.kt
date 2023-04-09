@@ -68,15 +68,27 @@ class MainActivity : AppCompatActivity() {
         binding.testBtn.setOnClickListener {
             if (twoSelected && lastDigit % 2 != 0)
                 binding.statusTV.text = ERROR
+            else if (!twoSelected && lastDigit % 2 == 0)
+                binding.statusTV.text = ERROR
             else if (threeSelected && lastDigit % 3 != 0)
+                binding.statusTV.text = ERROR
+            else if (!threeSelected && lastDigit % 3 == 0)
                 binding.statusTV.text = ERROR
             else if (fiveSelected && lastDigit % 5 != 0)
                 binding.statusTV.text = ERROR
+            else if (!fiveSelected && lastDigit % 5 == 0)
+                binding.statusTV.text = ERROR
             else if (sixSelected && lastDigit % 6 != 0)
+                binding.statusTV.text = ERROR
+            else if (!sixSelected && lastDigit % 6 == 0)
                 binding.statusTV.text = ERROR
             else if (nineSelected && lastDigit % 9 != 0)
                 binding.statusTV.text = ERROR
+            else if (!nineSelected && lastDigit % 9 == 0)
+                binding.statusTV.text = ERROR
             else if (tenSelected && lastDigit % 10 != 0)
+                binding.statusTV.text = ERROR
+            else if (!tenSelected && lastDigit % 10 == 0)
                 binding.statusTV.text = ERROR
             else {
                 binding.statusTV.text = SUCCESS
@@ -84,6 +96,7 @@ class MainActivity : AppCompatActivity() {
                 with(sharedPref.edit()) {
                     try {
                         lastDigit++
+                        binding.numberTV.text = lastDigit.toString()
                         putInt(LAST_DIGIT, lastDigit)
                     } catch (e: IOException) {
                         e.printStackTrace()
@@ -91,8 +104,7 @@ class MainActivity : AppCompatActivity() {
                     commit()
                 }
             }
-            if (binding.statusTV.text == ERROR)
-                clearColors()
+            clearColors()
         }
     }
 
